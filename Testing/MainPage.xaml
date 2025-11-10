@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Testing.ViewModels.Pages"
+    x:Class="Testing.MainPage"
+    x:DataType="vm:MainPageViewModel"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="20,40,20,20">
+
+            <!-- Header -->
+            <Label Text="Andrew Lim Kim Sheng (BCS22020005)"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#4B0082"
+                   HorizontalOptions="Center" />
+
+            <!-- Pet Image -->
+            <Frame Padding="0" HasShadow="False" BorderColor="Transparent" CornerRadius="15">
+                <Image Source="{Binding Pet.Image}"
+                       HeightRequest="220"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Frame>
+
+            <!-- Pet Info Card -->
+            <Frame CornerRadius="25"
+                   Padding="20"
+                   BackgroundColor="#FFF9E5"
+                   HasShadow="True"
+                   Margin="0,10,0,0">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <!-- Name, Breed, Age -->
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="{Binding Pet.Name}" FontSize="26" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Pet.Breed}" FontSize="16" TextColor="Gray"/>
+                        </VerticalStackLayout>
+
+                        <HorizontalStackLayout Grid.Column="1" VerticalOptions="Center">
+                            <Label Text="{Binding Pet.GenderSymbol}" FontSize="22" TextColor="#4A90E2" />
+                            <Label Text="{Binding Pet.AgeText}" FontSize="14" TextColor="Gray" VerticalTextAlignment="Center"/>
+                        </HorizontalStackLayout>
+                    </Grid>
+
+                    <!-- Address -->
+                    <HorizontalStackLayout Spacing="8">
+                        <Image Source="location_pin.png" WidthRequest="16" HeightRequest="16" />
+                        <Label Text="{Binding Pet.Address}" FontSize="12" TextColor="Gray" LineBreakMode="WordWrap" />
+                    </HorizontalStackLayout>
+
+                    <!-- Owner -->
+                    <Grid ColumnDefinitions="Auto, *, Auto" Padding="0,5">
+                        <Frame CornerRadius="25"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               Padding="0"
+                               BorderColor="LightGray"
+                               IsClippedToBounds="True">
+                            <Image Source="{Binding Pet.OwnerAvatar}" Aspect="AspectFill" />
+                        </Frame>
+                        <Label Grid.Column="1"
+                               Text="{Binding Pet.OwnerName}"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               Margin="10,0,0,0"/>
+                        <Label Grid.Column="2"
+                               Text="{Binding Pet.DateText}"
+                               VerticalOptions="Center"
+                               TextColor="Gray"/>
+                    </Grid>
+
+                    <!-- Description -->
+                    <Label Text="{Binding Pet.Description}"
+                           FontSize="14"
+                           TextColor="Gray"
+                           LineBreakMode="WordWrap" />
+
+                    <!-- Buttons -->
+                    <Grid ColumnDefinitions="Auto, *" ColumnSpacing="10" Margin="0,10,0,0">
+                        <!-- Favorite -->
+                        <Button Text="{Binding FavoriteIcon}"
+                                Command="{Binding ToggleFavoriteCommand}"
+                                FontSize="24"
+                                WidthRequest="55"
+                                HeightRequest="55"
+                                CornerRadius="28"
+                                BorderColor="{Binding FavoriteBorderColor}"
+                                BorderWidth="1"
+                                BackgroundColor="{Binding FavoriteBackground}"
+                                TextColor="{Binding FavoriteTextColor}" />
+
+                        <!-- Adoption -->
+                        <Button Text="{Binding AdoptionText}"
+                                Command="{Binding AdoptCommand}"
+                                BackgroundColor="#FFC107"
+                                TextColor="Black"
+                                FontSize="16"
+                                CornerRadius="30"
+                                HeightRequest="55"
+                                FontAttributes="Bold"
+                                Grid.Column="1"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
